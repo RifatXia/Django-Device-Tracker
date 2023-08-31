@@ -13,9 +13,9 @@ class Device(models.Model):
         abstract = True
 
 class Laptop(Device):
-    brand = models.CharField()
+    brand = models.CharField(max_length=100)
     added_at = models.DateTimeField(auto_now_add=True)
 
 class Mobile(Device):
-    brand = models.CharField()
+    brand = models.CharField(max_length=100)
     added_at = models.DateTimeField(auto_now_add=True)
