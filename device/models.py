@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from company.models import Company
 
@@ -7,6 +8,7 @@ from company.models import Company
 # which would just be the child class of Device
 class Device(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    bought_at = models.DateTimeField(default=timezone.now)
 
     # done to ensure so that the device base class doesn't have any table in admin 
     class Meta:
@@ -14,8 +16,14 @@ class Device(models.Model):
 
 class Laptop(Device):
     brand = models.CharField(max_length=100)
-    added_at = models.DateTimeField(auto_now_add=True)
+    ram = models.IntegerField(default=1)
+    rom = models.IntegerField(default=1)
+    
+    def __str__(self):
+        return self.brand
 
 class Mobile(Device):
     brand = models.CharField(max_length=100)
-    added_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.brand
