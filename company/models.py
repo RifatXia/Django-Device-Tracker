@@ -19,7 +19,16 @@ class Employee(models.Model):
     salary = models.DecimalField('Employee Salary', decimal_places=2, max_digits=20)
     joining_date = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    devices = models.ManyToManyField(settings.DEVICE_MODEL, blank=True, null=True)
 
     def __str__(self):
         return self.name
+    
+# the log to keep track of the devices borrowed by the employees
+# along with keeping track of the condition of the device when it is borrowed and returned
+class DeviceLog(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    device = models.ForeignKey(settings.DEVICE_MODEL, on_delete=models.CASCADE)
+    checkout_date = models.DateTimeField(auto_now_add=True)
+    return_date = models.DateTimeField(null=True, blank=True)
+    condition_on_checkout = models.CharField(max_length=1000, blank=True)
+    condition_on_return = models.CharField(max_length=1000, blank=True)

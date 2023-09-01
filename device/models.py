@@ -22,3 +22,4 @@ class Laptop(Device):
 
 class Mobile(Device):
     camera = models.IntegerField(default=10)
+    
