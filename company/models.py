@@ -27,6 +27,8 @@ class Employee(models.Model):
 # along with keeping track of the condition of the device when it is borrowed and returned
 class DeviceLog(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, null=True)
+    # settings.DEVICE_MODEL is used here and likeweise in other places 
+    # to bypass the issue of circular import 
     device = models.ForeignKey(settings.DEVICE_MODEL, on_delete=models.CASCADE, null=True)
     checkout_date = models.DateTimeField(auto_now_add=True)
     return_date = models.DateTimeField(null=True, blank=True)
