@@ -1,6 +1,5 @@
 from django.utils import timezone
 from django.db import models
-# from company.models import Company
 from django.conf import settings
 
 # the base class of all the types of devices, here it is done so that the base class remains the same 
