@@ -30,6 +30,10 @@ class DeviceLog(models.Model):
     device = models.ForeignKey(settings.DEVICE_MODEL, on_delete=models.CASCADE, null=True)
     checkout_date = models.DateTimeField(auto_now_add=True)
     return_date = models.DateTimeField(null=True, blank=True)
+
+    # this fields are to keep track of the condition of the device on checkout and return 
+    # one way to implement this would be to link django forms to the frontend file 
+    # us a text-box for taking the input of the condition during the checkout and return accordinly 
     condition_on_checkout = models.CharField(max_length=1000, blank=True)
     condition_on_return = models.CharField(max_length=1000, blank=True)
 
