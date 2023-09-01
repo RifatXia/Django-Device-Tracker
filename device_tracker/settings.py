@@ -27,9 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,6 +38,10 @@ INSTALLED_APPS = [
     'device',
     'company',
 ]
+
+# the definitions of the models to prevent circular import
+COMPANY_MODEL = 'company.Company'
+DEVICE_MODEL = 'device.Device'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
