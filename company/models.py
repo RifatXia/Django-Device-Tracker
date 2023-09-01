@@ -26,8 +26,8 @@ class Employee(models.Model):
 # the log to keep track of the devices borrowed by the employees
 # along with keeping track of the condition of the device when it is borrowed and returned
 class DeviceLog(models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    device = models.ForeignKey(settings.DEVICE_MODEL, on_delete=models.CASCADE)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, null=True)
+    device = models.ForeignKey(settings.DEVICE_MODEL, on_delete=models.CASCADE, null=True)
     checkout_date = models.DateTimeField(auto_now_add=True)
     return_date = models.DateTimeField(null=True, blank=True)
     condition_on_checkout = models.CharField(max_length=1000, blank=True)

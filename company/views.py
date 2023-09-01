@@ -5,7 +5,7 @@ from device.models import Device
 from django.core.exceptions import ObjectDoesNotExist
 
 # the api endpoint to checkout a device 
-def device_checkout(employee_id, device_id):
+def device_checkout(request, employee_id, device_id):
     device = Device.objects.get(pk=device_id)
 
     # if the device would already be borrowed, it cannot be further allocated to an employee
@@ -13,7 +13,7 @@ def device_checkout(employee_id, device_id):
     # then marking the device as borrowed
     if device.is_borrowed == False:
         employee = Employee.objects.get(pk=employee_id)
-        device_log = DeviceLog.create(
+        device_log = DeviceLog.objects.create(
             employee=employee, 
             device=device,
         )
@@ -23,10 +23,10 @@ def device_checkout(employee_id, device_id):
         device.save()
 
         # render accordingly
-        return render('')
+        # return render('')
 
 # the api endpoint to return a device
-def device_return(employee_id, device_id):
+def device_return(request, employee_id, device_id):
     # getting the device log of the employee with the device
     # setting it up in a try catch block to avoid error due to inability to find a device log 
     try:
@@ -41,7 +41,7 @@ def device_return(employee_id, device_id):
         device.save()
 
         # render accordingly
-        return render('')
+        # return render('')
 
     except ObjectDoesNotExist:
         device_log = None
