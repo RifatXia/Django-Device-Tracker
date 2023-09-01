@@ -1,4 +1,5 @@
 from django.db import models
+from device.models import Device
 
 class Company(models.Model):
     name = models.CharField('Company Name', max_length=100)
@@ -18,6 +19,7 @@ class Employee(models.Model):
     salary = models.DecimalField('Employee Salary', decimal_places=2, max_digits=20)
     joining_date = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    devices = models.ManyToManyField(Device)
 
     def __str__(self):
         return self.name

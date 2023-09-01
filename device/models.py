@@ -9,6 +9,7 @@ from company.models import Company
 class Device(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     bought_at = models.DateTimeField(default=timezone.now)
+    is_borrowed = models.BooleanField(default=False)
 
     # done to ensure so that the device base class doesn't have any table in admin 
     class Meta:
