@@ -9,19 +9,16 @@ from django.conf import settings
 # which would just be the child class of Device
 class Device(models.Model):
     company = models.ForeignKey(settings.COMPANY_MODEL, on_delete=models.CASCADE)
+    brand = models.CharField(max_length=100)
     bought_at = models.DateTimeField(default=timezone.now)
     is_borrowed = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.brand
+
 class Laptop(Device):
-    brand = models.CharField(max_length=100)
     ram = models.IntegerField(default=1)
     rom = models.IntegerField(default=1)
-    
-    def __str__(self):
-        return self.brand
 
 class Mobile(Device):
-    brand = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.brand
+    camera = models.IntegerField(default=10)
